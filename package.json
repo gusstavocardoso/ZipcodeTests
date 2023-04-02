@@ -1,0 +1,26 @@
+{
+  "name": "zipcode-tests",
+  "version": "1.0.0",
+  "description": "test automation consulting zipcode",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test",
+    "test:web": "npm test tests/web",
+    "test:api": "npm test tests/api",
+    "test:full": "npm test tests/**/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gusstavocardoso/ZipcodeTests.git"
+  },
+  "keywords": [],
+  "author": "gustavo cardoso",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gusstavocardoso/ZipcodeTests/issues"
+  },
+  "homepage": "https://github.com/gusstavocardoso/ZipcodeTests#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.32.0"
+  }
+}

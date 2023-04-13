@@ -17,6 +17,10 @@ steps:
   displayName: 'Instala as dependências'
 
 - script: |
+    npx playwright install
+  displayName: 'Instala os browsers'
+
+- script: |
     npm run test:full
   displayName: 'Executa os testes'
 

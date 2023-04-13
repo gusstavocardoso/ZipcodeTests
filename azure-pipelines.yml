@@ -1,0 +1,38 @@
+# Especifica que o pipeline será executado na plataforma Ubuntu
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+# Define as etapas do pipeline
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '14.x'
+  displayName: 'Instala o Node.js 14.x'
+
+- script: |
+    npm install
+  displayName: 'Instala as dependências'
+
+- script: |
+    npm run test:full
+  displayName: 'Executa os testes'
+
+- task: PublishTestResults@2
+  inputs:
+    testRunner: 'JUnit'
+    testResultsFiles: '**/test-results.xml'
+    searchFolder: '$(System.DefaultWorkingDirectory)'
+  displayName: 'Publica os resultados dos testes'
+
+- script: |
+    npx playwright test --reporter=html
+  displayName: 'Gera o relatório em HTML'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    artifactName: 'TestResults'
+    pathToPublish: '$(System.DefaultWorkingDirectory)/test-results'
+  displayName: 'Publica os artefatos do pipeline'
